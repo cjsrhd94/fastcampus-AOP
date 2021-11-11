@@ -25,6 +25,7 @@
 
     <!-- 횡단관심에 해당하는 클래스 bean을 등록한다. -->
     <bean id="before" class="com.fastcampus.biz.common.BeforeAdvice"/>
+    <bean id="afterReturning" class="com.fastcampus.biz.common.AfterReturningAdvice"/>
 
     <!-- AOP 설정 -->
     <aop:config>
@@ -36,6 +37,10 @@
         <aop:aspect ref="before">
             <!-- Advice -->
             <aop:before pointcut-ref="allPointcut" method="beforeLog"/>
+        </aop:aspect>
+
+        <aop:aspect ref="afterReturning">
+            <aop:after-returning pointcut-ref="getPointcut" method="afterLog" returning="returnObj"/>
         </aop:aspect>
     </aop:config>
 
