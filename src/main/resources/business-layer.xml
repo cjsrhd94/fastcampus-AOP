@@ -26,6 +26,7 @@
     <!-- 횡단관심에 해당하는 클래스 bean을 등록한다. -->
     <bean id="before" class="com.fastcampus.biz.common.BeforeAdvice"/>
     <bean id="afterReturning" class="com.fastcampus.biz.common.AfterReturningAdvice"/>
+    <bean id="afterThrowing" class="com.fastcampus.biz.common.AfterThrowingAdvice"/>
 
     <!-- AOP 설정 -->
     <aop:config>
@@ -41,6 +42,10 @@
 
         <aop:aspect ref="afterReturning">
             <aop:after-returning pointcut-ref="getPointcut" method="afterLog" returning="returnObj"/>
+        </aop:aspect>
+
+        <aop:aspect ref="afterThrowing">
+            <aop:after-throwing pointcut-ref="allPointcut" method="exceptionLog" throwing="exceptionObj"/>
         </aop:aspect>
     </aop:config>
 

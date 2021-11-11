@@ -27,6 +27,10 @@ public class BoardServiceImpl implements BoardService{
 
     @Override
     public void insertBoard(BoardVO vo) {
+        // 클라이언트가 0번 글을 등록하려고 하는 순간 예외를 발생시킨다.
+        if(vo.getSeq() == 0){
+            throw new IllegalArgumentException("0번 글을 등록할 수는 없습니다.");
+        }
         boardDAO.insertBoard(vo);
     }
 
