@@ -2,8 +2,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
 
 
 <!--    <bean id="boardDAO" class="com.fastcampus.biz.board.BoardDAO"></bean>-->
@@ -20,5 +22,21 @@
 
     <!-- field 주입 방식 -->
     <context:component-scan base-package="com.fastcampus.biz"/>
+
+    <!-- 횡단관심에 해당하는 클래스 bean을 등록한다. -->
+    <bean id="before" class="com.fastcampus.biz.common.BeforeAdvice"/>
+
+    <!-- AOP 설정 -->
+    <aop:config>
+        <!-- Pointcut -->
+        <aop:pointcut id="allPointcut" expression="execution(* com.fastcampus.biz..*Impl.*(..))"/>
+        <aop:pointcut id="getPointcut" expression="execution(* com.fastcampus.biz..*Impl.get*(..))"/>
+
+        <!-- Aspect -->
+        <aop:aspect ref="before">
+            <!-- Advice -->
+            <aop:before pointcut-ref="allPointcut" method="beforeLog"/>
+        </aop:aspect>
+    </aop:config>
 
 </beans>
