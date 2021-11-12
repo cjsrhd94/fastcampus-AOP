@@ -28,26 +28,29 @@
 <!--    <bean id="beforeAfter" class="com.fastcampus.biz.common.BeforeAfterAdvice"/>-->
 <!--    <bean id="afterThrowing" class="com.fastcampus.biz.common.AfterThrowingAdvice"/>-->
 
-    <!-- AOP 설정 -->
-    <aop:config>
-        <!-- Pointcut -->
-        <aop:pointcut id="allPointcut" expression="execution(* com.fastcampus.biz..*Impl.*(..))"/>
-        <aop:pointcut id="getPointcut" expression="execution(* com.fastcampus.biz..*Impl.get*(..))"/>
+<!--    &lt;!&ndash; AOP 설정 &ndash;&gt;-->
+<!--    <aop:config>-->
+<!--        &lt;!&ndash; Pointcut &ndash;&gt;-->
+<!--        <aop:pointcut id="allPointcut" expression="execution(* com.fastcampus.biz..*Impl.*(..))"/>-->
+<!--        <aop:pointcut id="getPointcut" expression="execution(* com.fastcampus.biz..*Impl.get*(..))"/>-->
 
-        <!-- Aspect -->
-        <aop:aspect ref="beforeAfter">
-            <!-- Advice -->
-            <aop:before pointcut-ref="allPointcut" method="beforeLog"/>
-            <aop:after-returning pointcut-ref="getPointcut" method="afterLog" returning="returnObj"/>
-        </aop:aspect>
+<!--        &lt;!&ndash; Aspect &ndash;&gt;-->
+<!--        <aop:aspect ref="beforeAfter">-->
+<!--            &lt;!&ndash; Advice &ndash;&gt;-->
+<!--            <aop:before pointcut-ref="allPointcut" method="beforeLog"/>-->
+<!--            <aop:after-returning pointcut-ref="getPointcut" method="afterLog" returning="returnObj"/>-->
+<!--        </aop:aspect>-->
 
-        <aop:aspect ref="afterThrowing">
-            <aop:after-throwing pointcut-ref="allPointcut" method="exceptionLog" throwing="exceptionObj"/>
-        </aop:aspect>
+<!--        <aop:aspect ref="afterThrowing">-->
+<!--            <aop:after-throwing pointcut-ref="allPointcut" method="exceptionLog" throwing="exceptionObj"/>-->
+<!--        </aop:aspect>-->
 
-        <aop:aspect ref="around">
-            <aop:around pointcut-ref="allPointcut" method="aroundLog"/>
-        </aop:aspect>
-    </aop:config>
+<!--        <aop:aspect ref="around">-->
+<!--            <aop:around pointcut-ref="allPointcut" method="aroundLog"/>-->
+<!--        </aop:aspect>-->
+<!--    </aop:config>-->
+
+    <!-- AOP에 대한 Annotation 설정 -->
+    <aop:aspectj-autoproxy/>
 
 </beans>

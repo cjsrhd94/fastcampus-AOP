@@ -1,14 +1,23 @@
 package com.fastcampus.biz.common;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 
-@Service("afterThrowing")
+@Service
+@Aspect
 public class AfterThrowingAdvice {
 
+    @Pointcut("execution(* com.fastcampus.biz..*Impl.*(..))")
+    public void allPointcut() {
+    }
+
     // JoinPoint가 다른 매개변수와 같이 사용되는 경우, 반드시 첫 번째 매개변수로 선언되어야 한다.
+    @AfterThrowing(pointcut = "allPointcut()", throwing = "exceptionObj")
     public void exceptionLog(JoinPoint jp, Exception exceptionObj) {
         String method = jp.getSignature().getName();
         System.out.println("[ 예외 처리 ] " + method +

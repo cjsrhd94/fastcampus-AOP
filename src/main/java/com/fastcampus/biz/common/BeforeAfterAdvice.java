@@ -2,13 +2,27 @@ package com.fastcampus.biz.common;
 
 import com.fastcampus.biz.user.UserVO;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Service;
 
-@Service("beforeAfter")
+@Service
+@Aspect
 public class BeforeAfterAdvice {
+
+    @Pointcut("execution(* com.fastcampus.biz..*Impl.*(..))")
+    public void allPointcut() {
+    }
+
+    @Pointcut("execution(* com.fastcampus.biz..*Impl.get*(..))")
+    public void getPointcut() {
+    }
 
     // Around로 등록되는 메소드만 ProceedingJoinPoint를 받고,
     // 나머지는 JoinPoint를 받아야 한다.
+    @Before("allPointcut()")
     public void beforeLog(JoinPoint jp) {
         String method = jp.getSignature().getName();
 
@@ -19,6 +33,7 @@ public class BeforeAfterAdvice {
                 "() 메소드 ARGS 정보 : " + args[0].toString());
     }
 
+    @AfterReturning(pointcut = "getPointcut()", returning = "returnObj")
     public void afterLog(JoinPoint jp, Object returnObj){
         String method = jp.getSignature().getName();
 
