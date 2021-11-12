@@ -3,7 +3,6 @@ package com.fastcampus.biz.common;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StopWatch;
 
@@ -11,12 +10,7 @@ import org.springframework.util.StopWatch;
 @Aspect
 public class AroundAdvice {
 
-    // 참조용 메소드는 기능 처리를 위한 메소드가 아닌 식별자로서의 역할만 수행한다.
-    @Pointcut("execution(* com.fastcampus.biz..*Impl.*(..))")
-    public void allPointcut() {
-    }
-
-    @Around("allPointcut()")
+    @Around("BoardPointcut.allPointcut()")
     public Object aroundLog(ProceedingJoinPoint jp) throws Throwable {
         // JoinPoint를 상속한 ProceedingJoinPoint를 이용하면 클라이언트가 호출한 비즈니스 메소드 정보를 알 수 있다.
         String method = jp.getSignature().getName();
