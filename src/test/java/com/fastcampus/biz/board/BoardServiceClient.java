@@ -15,7 +15,7 @@ public class BoardServiceClient {
 
         // 3. 객체를 테스트한다.
         BoardVO vo = new BoardVO();
-        vo.setSeq(0);
+        vo.setSeq(10);
         vo.setTitle("IoC 테스트");
         vo.setWriter("테스터2");
         vo.setContent("테스트중입니다!");
