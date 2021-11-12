@@ -9,7 +9,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserDAO userDAO;
+    private UserDAOSpring userDAO;
 
     @Override
     public void insertUser(UserVO vo) {
