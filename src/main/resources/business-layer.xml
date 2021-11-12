@@ -25,8 +25,7 @@
     <context:component-scan base-package="com.fastcampus.biz"/>
 
     <!-- 횡단관심에 해당하는 클래스 bean을 등록한다. -->
-    <bean id="before" class="com.fastcampus.biz.common.BeforeAdvice"/>
-    <bean id="afterReturning" class="com.fastcampus.biz.common.AfterReturningAdvice"/>
+    <bean id="beforeAfter" class="com.fastcampus.biz.common.BeforeAfterAdvice"/>
     <bean id="afterThrowing" class="com.fastcampus.biz.common.AfterThrowingAdvice"/>
 
     <!-- AOP 설정 -->
@@ -36,12 +35,12 @@
         <aop:pointcut id="getPointcut" expression="execution(* com.fastcampus.biz..*Impl.get*(..))"/>
 
         <!-- Aspect -->
-        <aop:aspect ref="before">
+        <aop:aspect ref="beforeAfter">
             <!-- Advice -->
             <aop:before pointcut-ref="allPointcut" method="beforeLog"/>
         </aop:aspect>
 
-        <aop:aspect ref="afterReturning">
+        <aop:aspect ref="beforeAfter">
             <aop:after-returning pointcut-ref="getPointcut" method="afterLog" returning="returnObj"/>
         </aop:aspect>
 
