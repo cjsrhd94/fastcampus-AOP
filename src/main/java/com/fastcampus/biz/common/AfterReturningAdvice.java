@@ -1,12 +1,15 @@
 package com.fastcampus.biz.common;
 
 import com.fastcampus.biz.user.UserVO;
+import org.aspectj.lang.JoinPoint;
 
 public class AfterReturningAdvice {
 
-    public void afterLog(Object returnObj){
+    public void afterLog(JoinPoint jp, Object returnObj){
+        String method = jp.getSignature().getName();
 
-        System.out.println("[ 사후 처리] 비즈니스 메소드의 리턴 값 : " + returnObj.toString());
+        System.out.println("[ 사후 처리 ] " + method +
+                "() 메소드의 리턴 값 : " + returnObj.toString());
 
         // 비즈니스 메소드가 리턴한 객체가 UserVo 타입의 객체인지 확인
         if (returnObj instanceof UserVO){

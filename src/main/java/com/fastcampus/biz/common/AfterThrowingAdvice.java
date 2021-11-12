@@ -1,12 +1,16 @@
 package com.fastcampus.biz.common;
 
+import org.aspectj.lang.JoinPoint;
+
 import java.sql.SQLException;
 
 public class AfterThrowingAdvice {
 
-    public void exceptionLog(Exception exceptionObj) {
-
-        System.out.println("[ 예외 처리 ] 비즈니스 메소드의 리턴 값 : " + exceptionObj.getMessage());
+    // JoinPoint가 다른 매개변수와 같이 사용되는 경우, 반드시 첫 번째 매개변수로 선언되어야 한다.
+    public void exceptionLog(JoinPoint jp, Exception exceptionObj) {
+        String method = jp.getSignature().getName();
+        System.out.println("[ 예외 처리 ] " + method +
+                "() 메소드 수행중 예외 발생 : " + exceptionObj.getMessage());
 
         // 발생된 예외의 타입에 따라 예외처리 로직을 분기시킨다.
         if (exceptionObj instanceof IllegalArgumentException) {

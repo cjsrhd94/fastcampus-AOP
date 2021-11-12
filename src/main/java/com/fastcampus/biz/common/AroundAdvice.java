@@ -8,6 +8,9 @@ import org.springframework.util.StopWatch;
 public class AroundAdvice {
 
     public Object aroundLog(ProceedingJoinPoint jp) throws Throwable{
+        // JoinPoint를 상속한 ProceedingJoinPoint를 이용하면 클라이언트가 호출한 비즈니스 메소드 정보를 알 수 있다.
+        String method = jp.getSignature().getName();
+
         Object returnObj = null;
 
         StopWatch watch = new StopWatch();
@@ -18,7 +21,7 @@ public class AroundAdvice {
 
         watch.stop();
 
-        System.out.println("비즈니스 메소드 수행에 소요된 시간 : " + watch.getTotalTimeSeconds() + "(초)");
+        System.out.println(method + "() 메소드 수행에 소요된 시간 : " + watch.getTotalTimeSeconds() + "(초)");
 
         return returnObj;
     }
