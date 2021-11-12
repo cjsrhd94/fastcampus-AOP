@@ -1,9 +1,11 @@
 package com.fastcampus.biz.common;
 
 import org.aspectj.lang.JoinPoint;
+import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 
+@Service("afterThrowing")
 public class AfterThrowingAdvice {
 
     // JoinPoint가 다른 매개변수와 같이 사용되는 경우, 반드시 첫 번째 매개변수로 선언되어야 한다.

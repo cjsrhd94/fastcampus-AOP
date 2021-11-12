@@ -24,9 +24,9 @@
     <!-- field 주입 방식 -->
     <context:component-scan base-package="com.fastcampus.biz"/>
 
-    <!-- 횡단관심에 해당하는 클래스 bean을 등록한다. -->
-    <bean id="beforeAfter" class="com.fastcampus.biz.common.BeforeAfterAdvice"/>
-    <bean id="afterThrowing" class="com.fastcampus.biz.common.AfterThrowingAdvice"/>
+<!--    &lt;!&ndash; 횡단관심에 해당하는 클래스 bean을 등록한다. &ndash;&gt;-->
+<!--    <bean id="beforeAfter" class="com.fastcampus.biz.common.BeforeAfterAdvice"/>-->
+<!--    <bean id="afterThrowing" class="com.fastcampus.biz.common.AfterThrowingAdvice"/>-->
 
     <!-- AOP 설정 -->
     <aop:config>
@@ -38,9 +38,6 @@
         <aop:aspect ref="beforeAfter">
             <!-- Advice -->
             <aop:before pointcut-ref="allPointcut" method="beforeLog"/>
-        </aop:aspect>
-
-        <aop:aspect ref="beforeAfter">
             <aop:after-returning pointcut-ref="getPointcut" method="afterLog" returning="returnObj"/>
         </aop:aspect>
 

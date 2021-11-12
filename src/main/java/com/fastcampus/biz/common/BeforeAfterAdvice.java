@@ -2,7 +2,9 @@ package com.fastcampus.biz.common;
 
 import com.fastcampus.biz.user.UserVO;
 import org.aspectj.lang.JoinPoint;
+import org.springframework.stereotype.Service;
 
+@Service("beforeAfter")
 public class BeforeAfterAdvice {
 
     // Around로 등록되는 메소드만 ProceedingJoinPoint를 받고,
