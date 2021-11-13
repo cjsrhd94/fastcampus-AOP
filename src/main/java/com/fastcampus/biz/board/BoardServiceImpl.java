@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service("boardService")
 public class BoardServiceImpl implements BoardService{
@@ -45,12 +46,12 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public BoardVO getBoard(BoardVO vo) {
+    public Map<String, Object> getBoard(BoardVO vo) {
         return boardDAO.getBoard(vo);
     }
 
     @Override
-    public List<BoardVO> getBoardList(BoardVO vo) {
+    public List<Map<String, Object>> getBoardList(BoardVO vo) {
         return boardDAO.getBoardList(vo);
     }
 }

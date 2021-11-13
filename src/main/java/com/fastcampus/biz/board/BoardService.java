@@ -1,6 +1,7 @@
 package com.fastcampus.biz.board;
 
 import java.util.List;
+import java.util.Map;
 
 public interface BoardService {
     // 글 등록
@@ -13,8 +14,8 @@ public interface BoardService {
     void deleteBoard(BoardVO vo);
 
     // 글 상세 조회
-    BoardVO getBoard(BoardVO vo);
+    Map<String, Object> getBoard(BoardVO vo);
 
     // 글 목록 검색
-    List<BoardVO> getBoardList(BoardVO vo);
+    List<Map<String, Object>> getBoardList(BoardVO vo);
 }

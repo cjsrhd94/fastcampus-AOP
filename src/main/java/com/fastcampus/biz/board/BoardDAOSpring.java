@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 // 2. DAO(Data Access Object) 클래스 : 실질적인 DB 연동을 담당하는 클래스
 @Repository
@@ -46,19 +47,19 @@ public class BoardDAOSpring implements BoardService {
 	
 	// 글 상세 조회
 	@Override
-	public BoardVO getBoard(BoardVO vo) {
+	public Map<String, Object> getBoard(BoardVO vo) {
 		System.out.println("===> SPRING 기반으로 getBoard() 기능 처리");
 		Object[] params = {vo.getSeq()};
-		return spring.queryForObject(BOARD_GET, params, new BoardRowMapper());
+		return spring.queryForMap(BOARD_GET, params);
 	}
 	
 	// 글 목록 검색
 	@Override
-	public List<BoardVO> getBoardList(BoardVO vo) {
+	public List<Map<String, Object>> getBoardList(BoardVO vo) {
 		System.out.println("===> SPRING 기반으로 getBoardList() 기능 처리");
 		// 목록을 조회할 떄는 query() 메소드를 사용한다.
 		// 첫 번째 인자는 SQL, 두 번째 인자는 검색한 ResultSet을 매핑할 RowMapper 객체
-		return spring.query(BOARD_LIST, new BoardRowMapper());
+		return spring.queryForList(BOARD_LIST);
 	}
 
 }

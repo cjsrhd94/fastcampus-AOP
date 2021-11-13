@@ -3,6 +3,7 @@ package com.fastcampus.biz.board;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
 import java.util.List;
+import java.util.Map;
 
 public class BoardServiceClient {
     public static void main(String[] args) {
@@ -21,9 +22,13 @@ public class BoardServiceClient {
         vo.setContent("테스트중입니다!");
         boardService.insertBoard(vo);
 
-        List<BoardVO> boardList = boardService.getBoardList(vo);
-        for (BoardVO board : boardList){
-            System.out.println("---> " + board.toString());
+        vo.setSeq(3);
+        Map<String, Object> board = boardService.getBoard(vo);
+        System.out.println("상세 조회 결과 : " + board.toString());
+
+        List<Map<String, Object>> boardList = boardService.getBoardList(vo);
+        for (Map<String, Object> boards : boardList){
+            System.out.println("---> " + boards.toString());
         }
 
         // 4. 컨테이너를 종료한다.

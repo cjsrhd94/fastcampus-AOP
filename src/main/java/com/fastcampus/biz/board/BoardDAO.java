@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 // 2. DAO(Data Access Object) 클래스 : 실질적인 DB 연동을 담당하는 클래스
 @Repository
@@ -84,59 +85,60 @@ public class BoardDAO implements BoardService {
 	
 	// 글 상세 조회
 	@Override
-	public BoardVO getBoard(BoardVO vo) {
-		BoardVO board = null;
-		try {
-			conn = JDBCUtil.getConnection();
-			stmt = conn.prepareStatement(BOARD_GET);
-			stmt.setInt(1, vo.getSeq());
-			rs = stmt.executeQuery();
-			if(rs.next()) {
-				// 검색 결과가 있는 경우 조회수를 증가시킨다.
-				stmt = conn.prepareStatement(BOARD_UPDATE_CNT);
-				stmt.setInt(1, vo.getSeq());
-				stmt.executeUpdate();
-
-				board = new BoardVO();
-				board.setSeq(rs.getInt("SEQ"));
-				board.setTitle(rs.getString("TITLE"));
-				board.setWriter(rs.getString("WRITER"));
-				board.setContent(rs.getString("CONTENT"));
-				board.setRegDate(rs.getDate("REGDATE"));
-				board.setCnt(rs.getInt("CNT") + 1);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			JDBCUtil.close(rs, stmt, conn);
-		}
-		return board;
+	public Map<String, Object> getBoard(BoardVO vo) {
+//		BoardVO board = null;
+//		try {
+//			conn = JDBCUtil.getConnection();
+//			stmt = conn.prepareStatement(BOARD_GET);
+//			stmt.setInt(1, vo.getSeq());
+//			rs = stmt.executeQuery();
+//			if(rs.next()) {
+//				// 검색 결과가 있는 경우 조회수를 증가시킨다.
+//				stmt = conn.prepareStatement(BOARD_UPDATE_CNT);
+//				stmt.setInt(1, vo.getSeq());
+//				stmt.executeUpdate();
+//
+//				board = new BoardVO();
+//				board.setSeq(rs.getInt("SEQ"));
+//				board.setTitle(rs.getString("TITLE"));
+//				board.setWriter(rs.getString("WRITER"));
+//				board.setContent(rs.getString("CONTENT"));
+//				board.setRegDate(rs.getDate("REGDATE"));
+//				board.setCnt(rs.getInt("CNT") + 1);
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			JDBCUtil.close(rs, stmt, conn);
+//		}
+//		return board;
+		return null;
 	}
 	
 	// 글 목록 검색
 	@Override
-	public List<BoardVO> getBoardList(BoardVO vo) {
-		List<BoardVO> boardList = new ArrayList<BoardVO>();
-		try {
-			conn = JDBCUtil.getConnection();
-			stmt = conn.prepareStatement(BOARD_LIST);
-			rs = stmt.executeQuery();
-			while(rs.next()) {
-				BoardVO board = new BoardVO();
-				board.setSeq(rs.getInt("SEQ"));
-				board.setTitle(rs.getString("TITLE"));
-				board.setWriter(rs.getString("WRITER"));
-				board.setContent(rs.getString("CONTENT"));				
-				board.setRegDate(rs.getDate("REGDATE"));
-				board.setCnt(rs.getInt("CNT"));
-				boardList.add(board);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			JDBCUtil.close(rs, stmt, conn);
-		}
-		return boardList;
+	public List<Map<String, Object>> getBoardList(BoardVO vo) {
+//		List<BoardVO> boardList = new ArrayList<BoardVO>();
+//		try {
+//			conn = JDBCUtil.getConnection();
+//			stmt = conn.prepareStatement(BOARD_LIST);
+//			rs = stmt.executeQuery();
+//			while(rs.next()) {
+//				BoardVO board = new BoardVO();
+//				board.setSeq(rs.getInt("SEQ"));
+//				board.setTitle(rs.getString("TITLE"));
+//				board.setWriter(rs.getString("WRITER"));
+//				board.setContent(rs.getString("CONTENT"));
+//				board.setRegDate(rs.getDate("REGDATE"));
+//				board.setCnt(rs.getInt("CNT"));
+//				boardList.add(board);
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			JDBCUtil.close(rs, stmt, conn);
+//		}
+		return null;
 	}
 
 }
