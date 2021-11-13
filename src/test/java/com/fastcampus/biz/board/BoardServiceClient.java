@@ -23,11 +23,11 @@ public class BoardServiceClient {
         boardService.insertBoard(vo);
 
         vo.setSeq(3);
-        Map<String, Object> board = boardService.getBoard(vo);
+        BoardVO board = boardService.getBoard(vo);
         System.out.println("상세 조회 결과 : " + board.toString());
 
-        List<Map<String, Object>> boardList = boardService.getBoardList(vo);
-        for (Map<String, Object> boards : boardList){
+        List<BoardVO> boardList = boardService.getBoardList(vo);
+        for (BoardVO boards : boardList){
             System.out.println("---> " + boards.toString());
         }
 

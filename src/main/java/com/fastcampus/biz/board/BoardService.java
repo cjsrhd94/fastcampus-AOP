@@ -13,9 +13,15 @@ public interface BoardService {
     // 글 삭제
     void deleteBoard(BoardVO vo);
 
+//    // 글 상세 조회
+//    Map<String, Object> getBoard(BoardVO vo);
+//
+//    // 글 목록 검색
+//    List<Map<String, Object>> getBoardList(BoardVO vo);
+
     // 글 상세 조회
-    Map<String, Object> getBoard(BoardVO vo);
+    BoardVO getBoard(BoardVO vo);
 
     // 글 목록 검색
-    List<Map<String, Object>> getBoardList(BoardVO vo);
+    List<BoardVO> getBoardList(BoardVO vo);
 }

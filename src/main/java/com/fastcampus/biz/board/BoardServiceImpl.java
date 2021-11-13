@@ -10,7 +10,7 @@ import java.util.Map;
 public class BoardServiceImpl implements BoardService{
 
     @Autowired
-    private BoardDAOSpring boardDAO;
+    private BoardDAO boardDAO;
 
 //    public BoardServiceImpl() {
 //        System.out.println("===> BoardServiceImpl »ý¼º");
@@ -46,12 +46,12 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public Map<String, Object> getBoard(BoardVO vo) {
+    public BoardVO getBoard(BoardVO vo) {
         return boardDAO.getBoard(vo);
     }
 
     @Override
-    public List<Map<String, Object>> getBoardList(BoardVO vo) {
+    public List<BoardVO> getBoardList(BoardVO vo) {
         return boardDAO.getBoardList(vo);
     }
 }
